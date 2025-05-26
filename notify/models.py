@@ -189,9 +189,9 @@ class Notification(models.Model):
     """
 
     recipient = models.ForeignKey(settings.AUTH_USER_MODEL,
-                                  related_name='notifications',
-                                  on_delete=models.CASCADE,
-                                  verbose_name=_('Notification receiver'))
+                                related_name='notifications',
+                                on_delete=models.CASCADE,
+                                verbose_name=_('Notification receiver'))
 
     # actor attributes.
     actor_content_type = models.ForeignKey(
@@ -204,7 +204,7 @@ class Notification(models.Model):
         verbose_name=_('ID of the actor object'))
 
     actor_content_object = GenericForeignKey('actor_content_type',
-                                             'actor_object_id')
+                                            'actor_object_id')
 
     actor_text = models.CharField(
         max_length=50, blank=True, null=True,
@@ -223,7 +223,7 @@ class Notification(models.Model):
         verbose_name=_('Description of the notification'))
 
     nf_type = models.CharField(max_length=20, default='default',
-                               verbose_name=_('Type of notification'))
+                            verbose_name=_('Type of notification'))
 
     # TODO: Add a field to store notification cover images.
 
@@ -238,7 +238,7 @@ class Notification(models.Model):
         verbose_name=_('ID of the target object'))
 
     target_content_object = GenericForeignKey('target_content_type',
-                                              'target_object_id')
+                                            'target_object_id')
 
     target_text = models.CharField(
         max_length=50, blank=True, null=True,
@@ -269,14 +269,14 @@ class Notification(models.Model):
         verbose_name=_('Anonymous URL for action object'))
 
     extra = JSONField(null=True, blank=True,
-                      verbose_name=_('JSONField to store addtional data'))
+                    verbose_name=_('JSONField to store addtional data'))
 
     # Advanced details.
     created = models.DateTimeField(auto_now=False, auto_now_add=True)
     read = models.BooleanField(default=False,
-                               verbose_name=_('Read status'))
+                            verbose_name=_('Read status'))
     deleted = models.BooleanField(default=False,
-                                  verbose_name=_('Soft delete status'))
+                                verbose_name=_('Soft delete status'))
 
     objects = NotificationQueryset.as_manager()
 
