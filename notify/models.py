@@ -3,12 +3,12 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.conf import settings
 from django.db.models import QuerySet
-from jsonfield.fields import JSONField
+from django.db.models import JSONField
 from six import python_2_unicode_compatible
 from django.utils.html import escape
 from django.utils.timesince import timesince
-from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import force_text
+from django.utils.translation import gettext_lazy as _
+from django.utils.encoding import force_str
 from django.utils.functional import cached_property
 
 from .utils import prefetch_relations
@@ -398,7 +398,7 @@ class Notification(models.Model):
 
         :return: HTML escaped and JSON-friendly data.
         """
-        return escape(force_text(obj)) if obj else None
+        return escape(force_str(obj)) if obj else None
 
     def as_json(self):
         """
